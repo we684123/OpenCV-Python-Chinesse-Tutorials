@@ -33,11 +33,11 @@ class Ui_MainWindow(QtWidgets.QWidget):
         button_color = [self.button_open_camera, self.button_close]
         for i in range(2):
             button_color[i].setStyleSheet("QPushButton{color:black}"
-                                           "QPushButton:hover{color:red}"
-                                           "QPushButton{background-color:rgb(78,255,255)}"
-                                           "QpushButton{border:2px}"
-                                           "QPushButton{border_radius:10px}"
-                                           "QPushButton{padding:2px 4px}")
+                                          "QPushButton:hover{color:red}"
+                                          "QPushButton{background-color:rgb(78,255,255)}"
+                                          "QpushButton{border:2px}"
+                                          "QPushButton{border_radius:10px}"
+                                          "QPushButton{padding:2px 4px}")
 
         self.button_open_camera.setMinimumHeight(50)
         self.button_close.setMinimumHeight(50)
@@ -77,9 +77,9 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.button_close.clicked.conn ect(self.close)
 
     def button_open_camera_click(self):
-        if self.timer_camera.isActive() == False:
+        if self.timer_camera.isActive() is False:
             flag = self.cap.open(self.CAM_NUM)
-            if flag == False:
+            if flag is False:
                 msg = QtWidgets.QMessageBox.Warning(self, u'Warning', u'请检测相机与电脑是否连接正确',
                                                     buttons=QtWidgets.QMessageBox.Ok,
                                                     defaultButton=QtWidgets.QMessageBox.Ok)
@@ -98,13 +98,15 @@ class Ui_MainWindow(QtWidgets.QWidget):
         flag, self.image = self.cap.read()
         show = cv2.resize(self.image, (640, 480))
         show = cv2.cvtColor(show, cv2.COLOR_BGR2RGB)
-        showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0], QtGui.QImage.Format_RGB888)
+        showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0],
+                                 QtGui.QImage.Format_RGB888)
         self.label_show_camera.setPixmap(QtGui.QPixmap.fromImage(showImage))
 
     def closeEvent(self, event):
         ok = QtWidgets.QPushButton()
         cancel = QtWidgets.QPushButton()
-        msg = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Warning, u'关闭', u'是否关闭！')
+        msg = QtWidgets.QMessageBox(
+            QtWidgets.QMessageBox.Warning, u'关闭', u'是否关闭！')
         msg.addButton(ok, QtWidgets.QMessageBox.ActionRole)
         msg.addButton(cancel, QtWidgets.QMessageBox.RejectRole)
         ok.setText(u'确定')
