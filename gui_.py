@@ -80,7 +80,8 @@ class Ui_MainWindow(QtWidgets.QWidget):
         if self.timer_camera.isActive() is False:
             flag = self.cap.open(self.CAM_NUM)
             if flag is False:
-                msg = QtWidgets.QMessageBox.Warning(self, u'Warning', u'请检测相机与电脑是否连接正确',
+                msg = QtWidgets.QMessageBox.Warning(self, u'Warning',
+                                                    u'请检测相机与电脑是否连接正确',
                                                     buttons=QtWidgets.QMessageBox.Ok,
                                                     defaultButton=QtWidgets.QMessageBox.Ok)
                 # if msg==QtGui.QMessageBox.Cancel:
